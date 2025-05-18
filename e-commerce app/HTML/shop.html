@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShopEase - Shop</title>
+  <link rel="stylesheet" href="../CSS/styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav">
+      <h1 class="logo">ShopEase</h1>
+
+      <nav class="nav-container">
+        <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+          ☰
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html" class="active">Shop</a></li>
+          <li><a href="deals.html">Deals</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <input type="text" placeholder="Search products..." class="search-bar" />
+        <a href="#" class="cart">🛒</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Shop Section -->
+  <section class="shop container">
+    <h2>Our Products</h2>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <label for="categoryFilter">Category:</label>
+      <select id="categoryFilter" name="categoryFilter">
+        <option value="all">All</option>
+        <option value="clothing">Clothing</option>
+        <option value="shoes">Shoes</option>
+        <option value="bags">Bags</option>
+        <option value="accessories">Accessories</option>
+      </select>
+
+      <label for="priceFilter">Max Price:</label>
+      <input type="range" id="priceFilter" name="priceFilter" min="0" max="100" value="100" />
+      <span id="priceValue">$100</span>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+      <!-- Products inserted by JS -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 ShopEase. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Product data example
+    const products = [
+      { id: 1, title: "Stylish Jacket", category: "clothing", price: 49.99, img: "https://via.placeholder.com/200" },
+      { id: 2, title: "Modern Sneakers", category: "shoes", price: 69.99, img: "https://via.placeholder.com/200" },
+      { id: 3, title: "Casual Backpack", category: "bags", price: 39.99, img: "https://via.placeholder.com/200" },
+      { id: 4, title: "Smart Watch", category: "accessories", price: 89.99, img: "https://via.placeholder.com/200" },
+      { id: 5, title: "Formal Shirt", category: "clothing", price: 35.99, img: "https://via.placeholder.com/200" },
+      { id: 6, title: "Running Shoes", category: "shoes", price: 59.99, img: "https://via.placeholder.com/200" },
+      { id: 7, title: "Leather Handbag", category: "bags", price: 79.99, img: "https://via.placeholder.com/200" },
+      { id: 8, title: "Sunglasses", category: "accessories", price: 29.99, img: "https://via.placeholder.com/200" },
+    ];
+
+    const productGrid = document.getElementById("productGrid");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const priceFilter = document.getElementById("priceFilter");
+    const priceValue = document.getElementById("priceValue");
+
+    function displayProducts() {
+      const category = categoryFilter.value;
+      const maxPrice = priceFilter.value;
+
+      const filtered = products.filter(p => 
+        (category === "all" || p.category === category) && p.price <= maxPrice
+      );
+
+      productGrid.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <img src="${p.img}" alt="${p.title}" />
+          <h4>${p.title}</h4>
+          <p>$${p.price.toFixed(2)}</p>
+        </div>
+      `).join("");
+    }
+
+    // Initial display
+    displayProducts();
+
+    // Update on filter change
+    categoryFilter.addEventListener("change", displayProducts);
+    priceFilter.addEventListener("input", () => {
+      priceValue.textContent = "$" + priceFilter.value;
+      displayProducts();
+    });
+  </script>
+
+</body>
+</html>
