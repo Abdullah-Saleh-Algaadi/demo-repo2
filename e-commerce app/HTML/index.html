@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShopEase - Home</title>
     <link rel="stylesheet" href="../CSS/styles.css" />
+    <style>
+      /* Scroll to Top Button Styles */
+      #scrollTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        padding: 12px 16px;
+        font-size: 20px;
+        cursor: pointer;
+        display: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        transition: background-color 0.3s ease;
+      }
+
+      #scrollTopBtn:hover {
+        background-color: #555;
+      }
+    </style>
     <script>
       // Scroll to top button behavior
       window.onscroll = function () {
@@ -18,7 +41,7 @@
   </head>
   <body>
     <!-- Scroll to Top Button -->
-    <button id="scrollTopBtn" onclick="scrollToTop()">⬆</button>
+    <button id="scrollTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">⬆</button>
 
     <!-- Header -->
     <header class="header">
@@ -30,6 +53,7 @@
           <div
             class="hamburger"
             onclick="document.querySelector('.nav-links').classList.toggle('active')"
+            aria-label="Toggle navigation menu"
           >
             ☰
           </div>
@@ -48,7 +72,7 @@
             placeholder="Search products..."
             class="search-bar"
           />
-          <a href="#" class="cart">🛒</a>
+          <a href="#" class="cart" aria-label="Shopping cart">🛒</a>
         </div>
       </div>
     </header>
@@ -78,22 +102,22 @@
       <h3>Featured Products</h3>
       <div class="product-grid">
         <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Product 1" />
+          <img src="https://cdn.pixabay.com/photo/2018/05/08/08/45/internet-3389686_960_720.jpg" alt="Stylish Jacket" />
           <h4>Stylish Jacket</h4>
           <p>$49.99</p>
         </div>
         <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Product 2" />
+          <img src="../../final/img/digital.jpg" alt="Modern Sneakers" />
           <h4>Modern Sneakers</h4>
           <p>$69.99</p>
         </div>
         <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Product 3" />
+          <img src="../../final/img/digital.jpg" alt="Casual Backpack" />
           <h4>Casual Backpack</h4>
           <p>$39.99</p>
         </div>
         <div class="product-card">
-          <img src="https://via.placeholder.com/200" alt="Product 4" />
+          <img src="../../final/img/digital.jpg" alt="Smart Watch" />
           <h4>Smart Watch</h4>
           <p>$89.99</p>
         </div>
